@@ -11,6 +11,9 @@ security:
                 class: App\Entity\User
                 property: username
     firewalls:
+        doc:
+            pattern: ^/doc$
+            security: false
         api_token:
             pattern: ^/token$
             security: false
