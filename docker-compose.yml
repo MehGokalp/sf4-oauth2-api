@@ -1,0 +1,61 @@
+version: "3.4"
+
+services:
+  php:
+    build:
+      context: .
+      target: symfony_php
+      args:
+        SYMFONY_VERSION: ${SYMFONY_VERSION:-}
+        STABILITY: ${STABILITY:-stable}
+    restart: unless-stopped
+    healthcheck:
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+    environment:
+      SYMFONY_VERSION:
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - symfony
+
+  caddy:
+    build:
+      context: .
+      target: symfony_caddy
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost}
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - symfony
+
+  redis:
+    image: redis:alpine
+    restart: on-failure
+    networks:
+      - symfony
+
+  mysql:
+    image: mysql:5.7
+    networks:
+      - symfony
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: api_project
+
+volumes:
+  caddy_data:
+  caddy_config:
+
+networks:
+  symfony:
