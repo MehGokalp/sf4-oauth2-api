@@ -35,7 +35,7 @@ final class UserFixtures extends AbstractFixture
 
             $user = $this->createSchema($userName);
 
-            $this->addReference('user_ref_' . ($i + 1), $defaultUser);
+            $this->addReference('user_ref_' . ($i + 1), $user);
             $manager->persist($user);
         }
 

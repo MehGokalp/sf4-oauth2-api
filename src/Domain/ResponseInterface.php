@@ -6,5 +6,5 @@ namespace App\Domain;
 
 interface ResponseInterface
 {
-    public function getData(): array;
+    public function getData();
 }
