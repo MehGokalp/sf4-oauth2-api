@@ -2,6 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
+        "ext-json": "*",
         "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",

@@ -13,12 +13,16 @@ This repository is a template to create fast and easily projects.
 
 ## Installation
 
-    docker-compose up --build --remove-orphans
+    make
 
 Then your containers will be ready.
 
 ## Postman Collection
 Also, postman collection added for current API. You can find them in postman folder.
+
+## API Documentation
+
+You can access the documentation via `/doc` path of project.
 
 ## Contributing
 This project completely open source . You can fork and modify everything, and you can use this project everywhere you want. I'm transferring my experiences into this project to contribute for open source family, and I'm trying to impress the beginners with unique ways.
